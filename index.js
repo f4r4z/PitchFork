@@ -36,7 +36,7 @@ const handlers = {
     },
 
     'getDiscounts': function () {
-        var speechOutput = "you can get" + freeDrinks(discounts) + "there right now";
+        var speechOutput = "you can get" + freeDrinks(discounts) + " at " + discountChain(discounts) + "right now";
         this.emit(':tell', speechOutput);
     },
 
@@ -103,6 +103,11 @@ var whatsLit = function(arr) {
 var freeDrinks = function(arr) {
     var discount = arr[0].title;
     return discount;
+};
+
+var discountChain = function(arr) {
+    var chain = arr[0].chainName;
+    return chain;
 };
 
 var whatElseIsLit = function(arr) {
