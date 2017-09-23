@@ -36,7 +36,7 @@ const handlers = {
     },
 
     'getDiscounts': function () {
-        var speechOutput = "you can get " + freeDrinks(discounts) + " at " + discountChain(discounts) + " right now";
+        var speechOutput = freeDrinks(discounts) + " at " + discountChain(discounts) + " right now";
         this.emit(':tell', speechOutput);
     },
 
@@ -138,7 +138,7 @@ var discounts = [
             "phoneNumber": "8555645705",
             "webSiteUrl": "https://www.google.com/"
         },
-        "title": "Free Sake Bombs 4 Capital One Customers",
+        "title": "Capital One customers get Free Sake Bombs",
         "description": "100% ANYWHERE",
         "expirationDate": "2100-12-31",
         "disclosures": [
