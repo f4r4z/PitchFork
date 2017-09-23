@@ -12,11 +12,19 @@ var merchantsCall = function(id) {
         },
         json: true
     }
-}
+};
+var merchants = [];
 
-app.listen(8001, function(){
-    console.log('App running on 8001 port')
-})
+app.listen(8001, function(request){
+    if(request) {
+        var ind = request.indexOf('?');
+        var array = request.split(ind)[1];
+        merchantDetails(array);
+    } else {
+        console.log('running on 8001');
+    }
+
+});
 
 app.use('/', router);
 
@@ -24,10 +32,15 @@ router.use(function(req, res, next){
     console.log(req.method, req.url);
     next();
 });
+var queryMerchants = function(id) {
+    rp(merchantsCall(id)).then(function(response) {
+        merchants.push(response);
+    });
+};
 
-
-
-rp().then(function(response) {
-    console.log(response);
-});
-
+var merchantDetails = function (arr) {
+    for(let i=0;i<arr.length;i++) {
+        queryMerchants(arr.merchantId);
+    }
+    console.log(merchants);
+};
