@@ -31,7 +31,8 @@ const handlers = {
     },
 
     'getMoreDetails': function () {
-        this.emit(':tell', getDetails(getNextHourPopularity(test)[0].data));
+        var data = getNextHourPopularity(test)[0].data;
+        this.emit(':tell', getDetails(data));
     },
 
     'getDiscounts': function () {
@@ -115,9 +116,9 @@ var getDetails = function(data) {
     // expect to spend about
     var medianPriceBinNumber = data.merchantPriceBin.merchantMedianPriceBinNumber;
     var lowerLimit = 0;
-    for( var i = 0; i< data.merchantPriceBin.priceBins.length; i++ ) {
+    for( var i = 0; i < data.merchantPriceBin.priceBins.length; i++ ) {
         if(data.merchantPriceBin.priceBin[i].binNumber == medianPriceBinNumber) {
-            lowerLimit = data.merchantPriceBin.priceBin[i].lowerLimit;
+            lowerLimit = data.merchantPriceBin.priceBins[i].lowerLimit;
         }
     }
     return "Expect to spend on average a little over " + lowerLimit;
@@ -152,7 +153,7 @@ var discounts = [
         "storeWide": true,
         "redeemableInStore": true
     }
-]
+];
 
 var test = [
     {
