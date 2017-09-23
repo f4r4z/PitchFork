@@ -42,11 +42,15 @@ const languageStrings = {
 };
 
 const handlers = {
+    //2 things: take us to options to ask it
     'LaunchRequest': function () {
-        this.emit('GetFact');
+        this.emit(':ask', 'Are you hungry?', 'What would you like to eat?');
     },
     'GetNewFactIntent': function () {
         this.emit('GetFact');
+    },
+    'GetLocation': function() {
+
     },
     'GetFact': function () {
         // Get a random space fact from the space facts list
