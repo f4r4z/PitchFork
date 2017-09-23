@@ -1,8 +1,12 @@
 var Alexa = require('alexa-sdk');
 const handlers = {
     //2 things: take us to options to ask it
-    'LaunchRequest': function () {
-        this.emit(':tell', 'Lets scarf some burgers');
+    'getLocations': function () {
+        this.emit(':ask', 'Lets scarf some burgers');
+    },
+
+    'getMerchantInfo': function () {
+        this.emit(':tell', 'yo mamas house');
     }
 };
 
