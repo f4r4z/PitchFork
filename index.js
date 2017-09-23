@@ -138,7 +138,7 @@ var discounts = [
             "phoneNumber": "8555645705",
             "webSiteUrl": "https://www.google.com/"
         },
-        "title": "FREE DRINKS 4 Capital One Customers",
+        "title": "Free Sake Bombs 4 Capital One Customers",
         "description": "100% ANYWHERE",
         "expirationDate": "2100-12-31",
         "disclosures": [
