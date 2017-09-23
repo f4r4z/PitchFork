@@ -138,7 +138,7 @@ var discounts = [
             "phoneNumber": "8555645705",
             "webSiteUrl": "https://www.google.com/"
         },
-        "title": "Capital One customers get Free Sake Bombs",
+        "title": "Capital One customers get Free Sah-kee Bombs",
         "description": "100% ANYWHERE",
         "expirationDate": "2100-12-31",
         "disclosures": [
