@@ -1,8 +1,10 @@
 
 var express = require('express');
 var rp = require('request-promise');
+var Alexa = require('alexa-sdk');
 var app = express();
 var router = express.Router();
+
 var merchantsCall = function(id) {
     return {
         uri: 'https://api.devexhacks.com/merchant-insights/merchants/' + id,
@@ -15,8 +17,9 @@ var merchantsCall = function(id) {
 };
 var merchants = [];
 
-app.listen(8001, function(request){
-    if(request) {
+app.listen(8001, function(event){
+    if(event) {
+        event
         var ind = request.indexOf('?');
         var array = request.split(ind)[1];
         merchantDetails(array);
@@ -43,4 +46,8 @@ var merchantDetails = function (arr) {
         queryMerchants(arr.merchantId);
     }
     console.log(merchants);
+};
+
+exports.handler = function(event, context, callback){
+    var alexa = Alexa.handler(event, context, callback);
 };
