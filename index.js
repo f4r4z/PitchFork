@@ -91,7 +91,7 @@ var whatsLit = function(arr) {
 };
 
 var freeDrinks = function(arr) {
-    var discount = discoutns[0].data;
+    var discount = discounts[0].data;
     return discount.title;
 };
 
