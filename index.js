@@ -9,4 +9,5 @@ var handlers = {
 exports.handler = function(event, context, callback){
     var alexa = Alexa.handler(event, context, callback);
     alexa.registerHandlers(handlers);
+    alexa.execute();
 };
