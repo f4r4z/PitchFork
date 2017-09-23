@@ -21,12 +21,12 @@ const handlers = {
     },
 
     'getMerchantInfo': function () {
-
         var speechOutput = whatsLit(test) + " is poppin right now!"
         this.emit(':tell', speechOutput);
     },
 
     'getDiscounts': function () {
+        var speechOutput = whatsLit(test) + " is poppin right now!"
         this.emit(':tell', "There are free drink for the rest of the night!");
     },
 
@@ -37,6 +37,64 @@ const handlers = {
     },
 
 };
+
+
+//start time formatter
+var timeGet = function() {
+    var options = {
+        weekday: "long",
+        hour: "2-digit",
+        minute: "2-digit",
+        hour12: false
+    }
+    var rawTime = new Date();
+    var timeString = rawTime.toLocaleTimeString("en-us",options);
+    var spaceless = timeString.split(" ");
+    var day = spaceless[0];
+    var time = spaceless[1];
+    var timeToGetLit = {
+        "day": day,
+        "time": time
+    }
+    return timeToGetLit;
+};
+var compare = function (a,b) {
+    if (a.popularity < b.popularity)
+        return 1;
+    if (a.popularity > b.popularity)
+        return -1;
+    return 0;
+};
+
+var getNextHourPopularity = function(arr) {
+    var currentDay = timeGet().day;
+    var currentHour = timeGet().time.split(":")[0];
+    var popularityArray = arr.map(function(merch) {
+        for(let i=0; i< merch.popularHours.length; i++) {
+            if(merch.popularHours[i].dayOfWeek === currentDay) {
+                if(merch.popularHours[i].startHour.split(":")[0] === currentHour) {
+                    return {
+                        "data": merch,
+                        "popularity": merch.popularHours[i].popularity
+                    }
+                }
+            }
+        }
+    });
+    return popularityArray.sort(compare);
+};
+
+var whatsLit = function(arr) {
+    var popArray =  getNextHourPopularity(arr);
+    var topMerchData = popArray[0].data;
+    return topMerchData.merchantName;
+};
+
+var getDetails = function(data) {
+    // get median bin and show lower limit
+    // expect to spend about
+}
+
 
 var test = [
     {
@@ -886,67 +944,6 @@ var test = [
         ]
     }
 ];
-
-//start time formatter
-var timeGet = function() {
-    var options = {
-        weekday: "long",
-        hour: "2-digit",
-        minute: "2-digit",
-        hour12: false
-    }
-    var rawTime = new Date();
-    var timeString = rawTime.toLocaleTimeString("en-us",options);
-    var spaceless = timeString.split(" ");
-    var day = spaceless[0];
-    var time = spaceless[1];
-    var timeToGetLit = {
-        "day": day,
-        "time": time
-    }
-    return timeToGetLit;
-};
-var compare = function (a,b) {
-    if (a.popularity < b.popularity)
-        return 1;
-    if (a.popularity > b.popularity)
-        return -1;
-    return 0;
-};
-
-var getNextHourPopularity = function(arr) {
-    var currentDay = timeGet().day;
-    var currentHour = timeGet().time.split(":")[0];
-    var popularityArray = arr.map(function(merch) {
-        for(let i=0; i< merch.popularHours.length; i++) {
-            if(merch.popularHours[i].dayOfWeek === currentDay) {
-                if(merch.popularHours[i].startHour.split(":")[0] === currentHour) {
-                    return {
-                        "data": merch,
-                        "popularity": merch.popularHours[i].popularity
-                    }
-                }
-            }
-        }
-    });
-    return popularityArray.sort(compare);
-};
-
-var whatsLit = function(arr) {
-    var popArray =  getNextHourPopularity(arr);
-
-    var topMerchData = popArray[0].data;
-    return topMerchData.merchantName;
-
-
-};
-
-var getDetails = function(data) {
-    // get median bin and show lower limit
-    // expect to spend about
-}
-
-
 
 const APP_ID = 'amzn1.ask.skill.ef314947-968e-4afc-8047-8d3908b59470';
 
