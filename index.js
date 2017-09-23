@@ -24,6 +24,10 @@ const handlers = {
         this.emit(':tell', "Kushi Tsuru's lit right now");
     },
 
+    'getDiscounts': function () {
+        this.emit(':tell', "There are free drink for the rest of the night!");
+    },
+
     'AMAZON.HelpIntent': function () {
         const speechOutput = this.t('HELP_MESSAGE');
         const reprompt = this.t('HELP_MESSAGE');
