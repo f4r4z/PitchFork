@@ -113,11 +113,11 @@ var whatElseIsLit = function(arr) {
 var getDetails = function(data) {
     // get median bin and show lower limit
     // expect to spend about
-    var medianPriceBinNumber = data.medianPriceBin.merchantMedianPriceBinNumber;
+    var medianPriceBinNumber = data.merchantPriceBin.merchantMedianPriceBinNumber;
     var lowerLimit = 0;
-    for( var i = 0; i< data.medianPriceBin.priceBins.length; i++ ) {
-        if(data.medianPriceBin.priceBin[i].binNumber == medianPriceBinNumber) {
-            lowerLimit = data.medianPriceBin.priceBin[i].lowerLimit;
+    for( var i = 0; i< data.merchantPriceBin.priceBins.length; i++ ) {
+        if(data.merchantPriceBin.priceBin[i].binNumber == medianPriceBinNumber) {
+            lowerLimit = data.merchantPriceBin.priceBin[i].lowerLimit;
         }
     }
     return "Expect to spend on average a little over " + lowerLimit;
