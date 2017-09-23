@@ -1,7 +1,6 @@
 
 var express = require('express');
 var rp = require('request-promise');
-var Alexa = require('alexa-sdk');
 var app = express();
 var router = express.Router();
 
@@ -46,8 +45,4 @@ var merchantDetails = function (arr) {
         queryMerchants(arr.merchantId);
     }
     console.log(merchants);
-};
-
-exports.handler = function(event, context, callback){
-    var alexa = Alexa.handler(event, context, callback);
 };
