@@ -6,7 +6,7 @@ const languageStrings = {
             RESTAURANT_NAMES: 'Starbucks, Saffron Grill, Kushi Tsuru',
             SKILL_NAME: 'Space Facts',
             GET_LOCATION_MESSAGE: "As a robot I never go hungry but here are some restaurants that are open near you: ",
-            HELP_MESSAGE: 'You can say tell me a space fact, or, you can say exit... What can I help you with?',
+            HELP_MESSAGE: 'You can say I am hungry, or, you can say I have the munchies... What can I help you with?',
             HELP_REPROMPT: 'What can I help you with?',
             STOP_MESSAGE: 'Goodbye!',
         },
@@ -21,8 +21,15 @@ const handlers = {
     },
 
     'getMerchantInfo': function () {
-        this.emit(':tell', 'yo mamas house');
-    }
+        this.emit(':tell', "Kushi Tsuru's lit right now");
+    },
+
+    'AMAZON.HelpIntent': function () {
+        const speechOutput = this.t('HELP_MESSAGE');
+        const reprompt = this.t('HELP_MESSAGE');
+        this.emit(':ask', speechOutput, reprompt);
+    },
+
 };
 
 //start time formatter
