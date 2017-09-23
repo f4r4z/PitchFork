@@ -91,8 +91,8 @@ var whatsLit = function(arr) {
 };
 
 var freeDrinks = function(arr) {
-    var discount = discounts[0].data;
-    return discount.title;
+    var discount = discounts[0].title;
+    return discount;
 };
 
 var getDetails = function(data) {
@@ -125,8 +125,8 @@ var discounts = [
             "couponClickedUrl": "https://google.com",
             "couponPresentedUrl": "https://google.com"
         },
-        "storeWide": false,
-        "redeemableInStore": false
+        "storeWide": true,
+        "redeemableInStore": true
     }
 ]
 
