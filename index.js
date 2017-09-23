@@ -37,7 +37,7 @@ const handlers = {
 
     'getDiscounts': function () {
         var speechOutput = freeDrinks(discounts) + " at " + discountChain(discounts) + " right now";
-        this.emit(':tell', speechOutput);
+        this.emit(':ask', speechOutput);
     },
 
     'AMAZON.HelpIntent': function () {
