@@ -1,0 +1,15 @@
+{
+  "name": "pitch-fork",
+  "description": "Hackathon project for Pitchfork team",
+  "version": "0.0.0",
+  "license": "UNLICENSED",
+  "private": true,
+  "scripts": {
+    "serve": "node run server.js"
+  },
+  "devDependencies": {
+    "express": "^4.15.4",
+    "request": "^2.82.0",
+    "request-promise": "^4.2.2"
+  }
+}
