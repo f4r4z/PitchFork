@@ -21,13 +21,13 @@ const handlers = {
     },
 
     'getMerchantInfo': function () {
-        var speechOutput = whatsLit(test) + " is poppin right now!"
+        var speechOutput = whatsLit(test) + " is poppin right now!";
         this.emit(':tell', speechOutput);
     },
 
     'getDiscounts': function () {
-        var speechOutput = whatsLit(test) + " is poppin right now!"
-        this.emit(':tell', "There are free drink for the rest of the night!");
+        var speechOutput = "you can get" + freeDrinks(discounts) + "there right now";
+        this.emit(':tell', speechOutput);
     },
 
     'AMAZON.HelpIntent': function () {
@@ -90,11 +90,45 @@ var whatsLit = function(arr) {
     return topMerchData.merchantName;
 };
 
+var freeDrinks = function(arr) {
+    var discount = discoutns[0].data;
+    return discount.title;
+};
+
 var getDetails = function(data) {
     // get median bin and show lower limit
     // expect to spend about
 }
 
+var discounts = [
+    {
+        "couponId": "1506191674217",
+        "chainName": "Kushi Tsuru",
+        "chainContact": {
+            "phoneNumber": "8555645705",
+            "webSiteUrl": "https://www.google.com/"
+        },
+        "title": "FREE DRINKS 4 Capital One Customers",
+        "description": "100% ANYWHERE",
+        "expirationDate": "2100-12-31",
+        "disclosures": [
+            {
+                "title": "Details and Exclusions",
+                "disclosureText": "Yes it's lit. 100% OFF"
+            }
+        ],
+        "redemption": {
+            "couponImageUrl": "http://i.forbesimg.com/media/2009/12/16/1216_cash-dollars_650x455.jpg",
+            "couponCode": "Barcode - 850737209241916"
+        },
+        "callbacks": {
+            "couponClickedUrl": "https://google.com",
+            "couponPresentedUrl": "https://google.com"
+        },
+        "storeWide": false,
+        "redeemableInStore": false
+    }
+]
 
 var test = [
     {
