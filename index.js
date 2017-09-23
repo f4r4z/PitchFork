@@ -32,11 +32,11 @@ const handlers = {
 
     'getMoreDetails': function () {
         var data = getNextHourPopularity(test)[0].data;
-        this.emit(':tell', getDetails(data));
+        this.emit(':ask', getDetails(data));
     },
 
     'getDiscounts': function () {
-        var speechOutput = "you can get" + freeDrinks(discounts) + " at " + discountChain(discounts) + "right now";
+        var speechOutput = "you can get " + freeDrinks(discounts) + " at " + discountChain(discounts) + " right now";
         this.emit(':tell', speechOutput);
     },
 
@@ -122,11 +122,11 @@ var getDetails = function(data) {
     var medianPriceBinNumber = data.merchantPriceBin.merchantMedianPriceBinNumber;
     var lowerLimit = 0;
     for( var i = 0; i < data.merchantPriceBin.priceBins.length; i++ ) {
-        if(data.merchantPriceBin.priceBin[i].binNumber == medianPriceBinNumber) {
+        if(data.merchantPriceBin.priceBins[i].binNumber == medianPriceBinNumber) {
             lowerLimit = data.merchantPriceBin.priceBins[i].lowerLimit;
         }
     }
-    return "Expect to spend on average a little over " + lowerLimit;
+    return "Expect to spend on average a little over " + lowerLimit + " dollars.";
 
 }
 
